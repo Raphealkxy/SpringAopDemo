@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+<bean id="book" class="com.timmy.entity.Book"></bean>
+<bean id="mybook" class="com.timmy.entity.MyBook"></bean>
+<aop:config>
+
+<aop:pointcut expression="execution(* com.timmy.entity.Book.*(..))" id="pointcut1"/>
+
+
+<aop:aspect ref="mybook">
+<aop:before method="before1" pointcut-ref="pointcut1"/>
+<aop:after method="after1" pointcut-ref="pointcut1"/>
+<aop:around method="around" pointcut-ref="pointcut1"/>
+
+
+</aop:aspect>
+</aop:config>
+</beans>
